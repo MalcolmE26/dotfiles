@@ -1,6 +1,6 @@
 # Cujo's Dotfiles
 
-Literally just my dotfiles.
+Literally just my dotfiles. Currently using package names from the Arch repos and AUR.
 
 Managed with Chezmoi
 
@@ -11,6 +11,8 @@ Managed with Chezmoi
 * Sway (WIP)
 * Mpv
 * Alacritty
+* brightnessctl
+* networkmanager
 
 ## Deployment Steps:
 
