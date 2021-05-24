@@ -87,8 +87,14 @@ output * bg ~/Pictures/wallpaper.png fill
 #
 # Custom controls
 #
-# sets caps lock to be ctrl
-exec setxkbmap -option ctrl:swapcaps
+# sets default keymap
+
+input "type:keyboard" {
+	xkb_layout us
+	xkb_variant altgr-intl
+	xkb_options ctrl:nocaps
+}
+
 # restarts sway and preserves bindings
 bindsym $mod+Shift+r restart sway inplace
 
