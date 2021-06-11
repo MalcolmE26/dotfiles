@@ -75,5 +75,5 @@ function print_status {
 # The argument to `sleep` is in seconds
 while true; do
         print_status
-        sleep 2
+        sleep 1
 done
