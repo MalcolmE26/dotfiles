@@ -16,23 +16,6 @@ function print_status {
         # on how to format time and date.
         date_formatted=$(date "+%a %F %H:%M")
 
-        # Symbolize the time of day (morning, midday, evening, night)
-        # The dash removes the zero padding in front of the hour. A leading zero wouldn't work in the if statements
-        h=$(date "+%-H")
-        if (($h >= 22 || $h <= 5)); then
-                time_of_day_symbol=🌌
-        elif (($h >= 17)); then
-                time_of_day_symbol=🌆
-        elif (($h >= 11)); then
-                time_of_day_symbol=🌞
-        else
-                time_of_day_symbol=🌄
-        fi
-        # Sun: 🌅 🌄 ☀️  🌞
-        # Moon: 🌙 🌑 🌕 🌝 🌜 🌗 🌘 🌚 🌒 🌔 🌛 🌓 🌖
-        # City: 🌇 🌃 🌆
-        # Stars: 🌟 🌠 🌌
-
         # "upower --enumerate | grep 'BAT'" gets the battery name (e.g.,
         # "/org/freedesktop/UPower/devices/battery_BAT0") from all power devices.
         # "upower --show-info" prints battery information from which we get
@@ -73,21 +56,21 @@ function print_status {
 
         # Print interface names with IPv4 addresses
         # Skip the first line since that's the loopback interface
-        network_info=$(ip -4 -oneline address | awk 'NR > 1 {printf(""$2": "$4" → "); system("default_gateway_and_ssid_for_device " $2)}' | tr '\n' '|')
+        #        network_info=$(ip -4 -oneline address | awk 'NR > 1 {printf(""$2": "$4" → "); system("default_gateway_and_ssid_for_device " $2)}' | tr '\n' '|')
 
-        echo "🖧 $network_info $audio_info 🔋 $battery_info $time_of_day_symbol $date_formatted"
+        echo " $network_info $audio_info 🔋 $battery_info $time_of_day_symbol $date_formatted"
 }
 
-function default_gateway_and_ssid_for_device() {
-
-        dev=$1
-        default_gateway=$(ip route show default dev $dev | awk '{print $3}')
-        # This is empty if we are not connected via WiFi. To get signal strength, use "iw wlp3s0 link"
-        ssid=$(iw $dev info | grep -Po '(?<=ssid ).*')
-        echo $default_gateway $ssid
-}
+#function default_gateway_and_ssid_for_device() {
+#
+#        dev=$1
+#        default_gateway=$(ip route show default dev $dev | awk '{print $3}')
+#        # This is empty if we are not connected via WiFi. To get signal strength, use "iw wlp3s0 link"
+#        ssid=$(iw $dev info | grep -Po '(?<=ssid ).*')
+#        echo $default_gateway $ssid
+#}
 # Make the function available to be called from awk
-export -f default_gateway_and_ssid_for_device
+#export -f default_gateway_and_ssid_for_device
 
 # The argument to `sleep` is in seconds
 while true; do
