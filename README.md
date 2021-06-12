@@ -13,6 +13,9 @@ Managed with Chezmoi
 * Alacritty
 * brightnessctl
 * networkmanager
+* newsboat
+* surf
+* qutebrowser
 
 ## Deployment Steps:
 
