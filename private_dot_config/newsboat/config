@@ -1,1 +1,1 @@
-browser "firefox %u"
+browser "i3-swallow qutebrowser %u"

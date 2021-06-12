@@ -14,8 +14,8 @@ Managed with Chezmoi
 * brightnessctl
 * networkmanager
 * newsboat
-* surf
 * qutebrowser
+* i3-swallow
 
 ## Deployment Steps:
 
